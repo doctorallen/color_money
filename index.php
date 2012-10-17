@@ -22,14 +22,14 @@ $('#colorPicker').miniColors({ change: function( hex, rgb){
 	var color = $.xcolor.analogous(hex, 8, 30);
 	var gradient_colors = new Array();
 	$.each(color, function(index, value){
-		gradient_colors.push($.xcolor.lighten(value.getHex())); 
+		gradient_colors.push($.xcolor.lighten(value.getHex(), 2)); 
 		console.log(index);
-		$('#color-' + index).css('background-color', value.getHex());
-		$('#colorg-' + index).css('background-color', gradient_colors[index].getHex());
+		$('#color-' + index).css('background-color', value.getHex()).html('Original');
+		$('#colorg-' + index).css('background-color', gradient_colors[index].getHex()).html('Lightened');
 		$('#colorfinal-' + index).css(	
 			'background', '-webkit-gradient(linear, left top, left bottom, from('+gradient_colors[index].getHex()+ 
-			',to(' + value.getHex()+')'
-		);
+			'),to(' + value.getHex()+'))'
+		).html('Gradient');
 		//$('#colorfinal-' + index).css('background', '-webkit-gradient(linear, left top, left bottom, from('+gradient_colors[index].getHex()+'), to('+value.getHex()+');' );
 //$('#colors').append('<div style="background-color:'+gradient_colors[index].getHex()+'; height: 100px; width: 100px; float: left; margin-right: 5px; color: #fff;">'+gradient_colors[index].getName()+'</div>');
 	});
